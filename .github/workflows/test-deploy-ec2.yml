@@ -1,0 +1,66 @@
+name: Test, deploy to EC2
+on: 
+  workflow_dispatch:
+  pull_request:
+    types: [opened, edited, reopened]
+jobs: 
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get repo code
+        uses: actions/checkout@v4
+      - name: Install Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Install deps
+        run: |
+          cd backend
+          npm ci --force
+      #- name: Build backend
+      #  run: |
+      #    cd backend
+      #    npm run build
+      #- name: Upload built files
+      #  uses: actions/upload-artifact@v3
+      #  with:
+      #    name: built-files
+      #    path: |
+      #      backend
+      #      !backend/node_modules
+      #      !backend/src
+      #- name: Download built files
+      #  uses: actions/download-artifact@v3
+      #  with:
+      #    name: built-files
+      - name: Deploy to EC2
+        uses: burnett01/rsync-deployments@6.0.0
+        with:
+          switches: -avzr --delete --exclude="node_modules" --exclude=".env.*" --exclude="build" --exclude="*.pem" --filter=""
+          path: backend/
+          remote_path: /home/ubuntu/ofac/app/
+          remote_host: ${{ secrets.EC2_HOST }}
+          remote_user: ${{ secrets.EC2_USERNAME }}
+          remote_key: ${{ secrets.EC2_SSH_KEY }}
+      - name: Update on EC2
+        env:
+          PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+          HOSTNAME: ${{secrets.EC2_HOST}}
+          USER_NAME: ${{secrets.EC2_USERNAME}}
+        run: |
+          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+
+              # Now we have got the access of EC2 and we will start the deploy .
+              cd /home/ubuntu/ofac &&
+              sudo chmod -R 777 ./app &&
+              cd /home/ubuntu/ofac/app &&
+              npm i &&
+              echo Deps installed &&
+              pm2 delete --silent ofac --watch || true &&
+              echo pm2: ofac removed &&
+              pm2 start --name ofac npm -- run server_ci-cd --update-env &&
+              echo pm2: ofac installed &&
+              pm2 save &&
+              echo Finish
+              '

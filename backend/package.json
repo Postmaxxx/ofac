@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serverdev": "set NODE_ENV=development&& nodemon"
+    "serverdev": "set NODE_ENV=development&& nodemon",
+    "build": "tsc",
+    "server_ci-cd": "export NODE_ENV=production && nodemon"
   },
   "author": "",
   "license": "ISC",
