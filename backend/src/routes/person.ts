@@ -55,16 +55,16 @@ router.post('/',
 
 			const result = await response.json()
 			const persons = result.matches[fullName]
-			console.log(persons);
+			//console.log(persons);
 			
 			const countryList = []
 			persons.map(person => person.addresses?.map(adr => countryList.push(adr.country)))
-			console.log(countryList);
+			//console.log(countryList);
 			
 			const dobList = persons
 				.map(person => (person.dob ? moment(person.dob, 'DD MMM YYYY').format('YYYY-MM-DD') : null))
 				.filter(dob => dob)
-			console.log(dobList, date);
+			//console.log(dobList, date);
 
 			const personToReturn = {
 				fullName, 

@@ -9,8 +9,7 @@ import { Result } from '../Result/Result'
 
 
 export const Checker = (): JSX.Element => {
-
-	const { theme, editPerson, person, modal, countries }  = useAppContext()
+	const { editPerson, person, modal, countries }  = useAppContext()
 	const _name = useRef<IInputFunctions>(null)
 	const _dob = useRef<IInputFunctions>(null)
 	const _country = useRef<IInputFunctions>(null)

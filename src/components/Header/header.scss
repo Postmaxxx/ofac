@@ -8,4 +8,9 @@ header {
 	color: var(--color_text_bright);
 	font-weight: 400;
 	font-size: 2rem;
+
+	& .header__content {
+		display: flex;
+		justify-content: space-between;
+	}
 }
