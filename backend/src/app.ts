@@ -38,7 +38,7 @@ app.use('/api/person', personRoutes)
 app.use('/api/countries', coutryRoutes)
 
 
-const PORT: number = Number(process.env.PORT) || 5000
+const PORT: number = Number(process.env.PORT) || 5050
 
 const backendFolder = (path.resolve(__dirname, '..'))
 
