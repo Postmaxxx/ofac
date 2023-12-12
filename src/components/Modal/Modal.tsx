@@ -1,7 +1,7 @@
 import './modal.scss'
 import { createPortal } from 'react-dom';
 import { useState, forwardRef, useImperativeHandle, useEffect, useRef } from 'react';
-import svgs from '../additions/svgs';
+import { svgs } from '../additions/svgs';
 import { lockFocusInside } from '../../assets/js/processors';
 
 
@@ -12,8 +12,8 @@ export interface IModal {
     name?: string
     closable?: boolean //has close icon
     onClose?: () => void //call this f on close
-    children: React.ReactNode
-    closeOnEsc?: boolean
+    children: React.ReactNode //children for modal window
+    closeOnEsc?: boolean //should close modal window on Esc pressed
 }
 
 
@@ -23,13 +23,13 @@ export interface IModalFunctions {
     closeName: (name: string) => void; //close all modals with the specified name
     getName: () => Promise<string | null>//get name of current visible modal
     closeAll: () => void//close all modals
-    contentChanged: () => void //if content changed
+    contentChanged: () => void //if content changed, get all new focusable elements to lock focus inside
 }
 
 
 
-
-const Modal = forwardRef<IModalFunctions, IProps>(({}, ref) => {
+//Modal window, with stack (to avoid lost any message), methods to create, close any/all messages from anywhere, can close 'tab' inside
+const Modal = forwardRef<IModalFunctions, IProps>(({}, ref): JSX.Element => {
     useImperativeHandle(ref, () => ({
         openModal({name, closable=true, onClose, closeOnEsc=true, children}) { 
             setModals(prev => ([...prev, {
@@ -40,7 +40,7 @@ const Modal = forwardRef<IModalFunctions, IProps>(({}, ref) => {
                 children
             }]))
         },
-        closeCurrent() {            
+        closeCurrent() {      
             setModals(prev => prev.slice(1))
         },
         closeName(name) {
@@ -63,10 +63,10 @@ const Modal = forwardRef<IModalFunctions, IProps>(({}, ref) => {
     }));
 
 
-    const [modals, setModals] = useState<IModal[]>([])
-    const _modal = document.getElementById('modal') as HTMLElement;
-    const focuser = useRef<ReturnType<typeof lockFocusInside>>()
-    const _modalContent = useRef<HTMLDivElement>(null)
+    const [modals, setModals] = useState<IModal[]>([]) //stack of modal windows
+    const _modal = document.getElementById('modal') as HTMLElement; //root element for modal window
+    const focuser = useRef<ReturnType<typeof lockFocusInside>>() //for locking focus inside the modal
+    const _modalContent = useRef<HTMLDivElement>(null) //modal window element
 
 
     const closeCurrent = (): void => {
@@ -76,7 +76,7 @@ const Modal = forwardRef<IModalFunctions, IProps>(({}, ref) => {
     const contentChanged = (): void => {
         if (_modalContent.current) {
             focuser.current?.destroy()
-            focuser.current = lockFocusInside({_parentElement: _modalContent.current,})
+            focuser.current = lockFocusInside({_parentElement: _modalContent.current})
             focuser.current.focusOn(0)
         }
     }
@@ -111,7 +111,7 @@ const Modal = forwardRef<IModalFunctions, IProps>(({}, ref) => {
     return _modal ? createPortal(
         <div className={`modal-window ${modals.length > 0 ? "visible" : ""}`} data-testid='modal' ref={_modalContent}>
             {modals[0]?.closable &&
-                <button className="closer" aria-label='close | закрыть' onClick={modals[0]?.onClose ? modals[0]?.onClose : close} data-testid='modal-closer'>
+                <button className="closer" aria-label='Close modal window' onClick={modals[0]?.onClose ? modals[0]?.onClose : close} data-testid='modal-closer'>
                     {svgs().iconClose}
                 </button>
             }
@@ -124,7 +124,7 @@ const Modal = forwardRef<IModalFunctions, IProps>(({}, ref) => {
     ) 
     :
     <div className="modal-window_absence">
-        App error, node for modal windows was not found
+        App error, node for modal window has not been found
     </div>
 
 })

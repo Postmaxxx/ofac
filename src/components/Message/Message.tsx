@@ -2,13 +2,15 @@ import './message.scss'
 
 
 interface IMessage {
-	text: string[]
-	onClose: () => void
-	header: string
-	buttonText: string
-	additionalData?: JSX.Element
+	text: string[] //text for message
+	onClose: () => void //action for close button
+	header: string //header text
+	buttonText: string //text for button (Close, OK, ...)
+	additionalData?: JSX.Element //additional children for more data to show
 }
 
+
+//message, used in modal window. Universal for different types of message
 export const Message = ({text, header, buttonText, additionalData, onClose}: IMessage): JSX.Element => {
 	return (
 		<div className="container">

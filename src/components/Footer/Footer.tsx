@@ -1,4 +1,4 @@
-import './footer.scss'
+import "./footer.scss";
 
 
 export const Footer = (): JSX.Element => {
@@ -11,5 +11,5 @@ export const Footer = (): JSX.Element => {
 				</div>
 			</div>
 		</footer>
-	)
-}
+	);
+};

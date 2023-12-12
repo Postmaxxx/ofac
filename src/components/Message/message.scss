@@ -1,5 +1,5 @@
-@use '/src/assets/css/variables' as *;
-@use '/src/assets/css/mixins' as *;
+@use "/src/assets/css/variables" as *;
+@use "/src/assets/css/mixins" as *;
 
 .message {
 	width: 80%;
@@ -41,13 +41,10 @@
 		.button_message_close {
 			margin-top: 30px;
 			align-self: center;
-
 		}
 
 		.result {
 			margin-top: 20px;
 		}
-
 	}
-
 }

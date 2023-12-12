@@ -2,126 +2,124 @@
 @use "../../assets/css/mixins.scss" as *;
 
 .block_input {
-    width: 100%;
-    position: relative;
-    padding-top: 15px;
+	width: 100%;
+	position: relative;
+	padding-top: 15px;
 
-    @include respond-to(sm) {
-        padding-top: 10px;
-    }
+	@include respond-to(sm) {
+		padding-top: 10px;
+	}
 
+	& label {
+		display: block;
+		transition: color $transition;
+		font-weight: 500;
+		color: var(--text);
+		margin-bottom: 3px;
+		color: var(--color_text);
 
-    & label {
-        display: block;
-        transition: color $transition;
-        font-weight: 500;
-        color: var(--text);
-        margin-bottom: 3px;
-        color: var(--color_text);
-        
-        @include respond-to(sm) {
-            margin-bottom: 3px;
-        }
+		@include respond-to(sm) {
+			margin-bottom: 3px;
+		}
 
-        @include respond-to(xs) {
-            margin-bottom: 2px;
-        }
+		@include respond-to(xs) {
+			margin-bottom: 2px;
+		}
 
-        & > span {
-            color: red;
-        }
-    }
+		& > span {
+			color: red;
+		}
+	}
 
+	.input-wrapper {
+		position: relative;
+		border-bottom: 2px solid var(--color_main_bg);
 
+		& input {
+			font-size: 1.1rem;
+			width: 100%;
+			outline: none;
+			padding: 3px 7px;
+			background-color: transparent; //var(--input_bg);
+			color: var(--input_text);
+			transition: background-color $transition, border $transition;
+			border: 2px solid transparent;
+			border-radius: 8px;
+			font-weight: 500;
 
-    .input-wrapper {
-        position: relative;
-        border-bottom: 2px solid var(--color_main_bg);
+			@include respond-to(sm) {
+				font-size: 1rem;
+				padding: 3px 5px;
+			}
 
-        &  input {
-            font-size: 1.1rem;
-            width: 100%;
-            outline: none;
-            padding: 3px 7px;
-            background-color: transparent;//var(--input_bg);
-            color: var(--input_text);
-            transition: background-color $transition, border $transition;
-            border: 2px solid transparent;
-            border-radius: 8px;
-            font-weight: 500;
-    
-    
-            @include respond-to(sm) {
-                font-size: 1rem;
-                padding: 3px 5px;
-            }
-    
-            @include respond-to(xs) {
-                font-size: .8rem;
-                padding: 2px 3px;
-                border-radius: 5px;
-            }
-    
-            &:focus{
-                outline: 2px solid var(--focus);
-                @include respond-to(xs) {
-                    outline: 1px solid var(--focus);
-                }
-            }
-        }
-    
+			@include respond-to(xs) {
+				font-size: 0.8rem;
+				padding: 2px 3px;
+				border-radius: 5px;
+			}
 
-    }
+			&:focus {
+				outline: 2px solid var(--focus);
+				@include respond-to(xs) {
+					outline: 1px solid var(--focus);
+				}
+			}
+		}
+	}
 
-   
+	& [data-content="errorText"] {
+		display: none;
+		&::before {
+			content: attr(data-prefix-text);
+		}
+	}
 
-    & [data-content="errorText"] {
-        display: none;
-        &::before {
-            content: attr(data-prefix-text);
-        }
-    }
+	.icon_exclamation {
+		width: 20px;
+		height: 20px;
+		position: absolute;
+		right: 20px;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		transition: opacity $transition;
+		pointer-events: none;
+	}
 
-    .icon_exclamation {
-        width: 20px;
-        height: 20px;
-        position: absolute;
-        right: 20px;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        transition: opacity $transition;
-        pointer-events: none;
-    }
+	&.incorrect-value {
+		& input {
+			animation: inputshake 0.2s ease-in-out 2;
+			background-color: var(--input_bg_incorrect);
+		}
 
-    &.incorrect-value {  
-        &  input {
-            animation: inputshake 0.2s ease-in-out 2;
-            background-color: var(--input_bg_incorrect);
-        }
+		& [data-content="errorText"] {
+			display: initial;
+		}
+	}
 
-        & [data-content="errorText"] {
-            display: initial;
-        }
-    }
+	@keyframes inputshake {
+		0% {
+			margin-left: 0rem;
+		}
+		25% {
+			margin-left: 0.5rem;
+		}
+		75% {
+			margin-left: -0.5rem;
+		}
+		100% {
+			margin-left: 0rem;
+		}
+	}
 
-    @keyframes inputshake {
-        0% { margin-left: 0rem; }
-        25% { margin-left: 0.5rem; }
-        75% { margin-left: -0.5rem; }
-        100% { margin-left: 0rem; }
-    }
-
-
-    &_right {
-        justify-content: flex-end;
-    }
+	&_right {
+		justify-content: flex-end;
+	}
 }
 
-
 body.dark {
-    .input-wrapper {
-        input {
-            color-scheme: dark;
-        }
-    }
+	.input-wrapper {
+		input {
+			color-scheme: dark;
+		}
+	}
 }

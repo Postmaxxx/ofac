@@ -1,61 +1,59 @@
-@use '/src/assets/css/variables' as *;
-@use '/src/assets/css/mixins' as *;
+@use "/src/assets/css/variables" as *;
+@use "/src/assets/css/mixins" as *;
 
 .modal-window {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 6000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    visibility: hidden;
-    transition: $transition;
-    background-color: rgba(#222, 0.95);
-    opacity: 0;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 6000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	visibility: hidden;
+	transition: $transition;
+	background-color: rgba(#222, 0.95);
+	opacity: 0;
 
-    & > .closer {
-        background-color: transparent;
-        border: none;
-        position: absolute;
-        right: 30px;
-        top: 30px;
-        width: 30px;
-        height: 30px;
-        cursor: pointer;
-        stroke: #979797;
-        transition: $transition;
+	& > .closer {
+		background-color: transparent;
+		border: none;
+		position: absolute;
+		right: 30px;
+		top: 30px;
+		width: 30px;
+		height: 30px;
+		cursor: pointer;
+		stroke: #979797;
+		transition: $transition;
 
-        &:hover, &:focus {
-            stroke: #FFF;
-            scale: 1.2;
-        }
-    }
+		&:hover {
+			stroke: #fff;
+			scale: 1.2;
+		}
+	}
 
-    & .modal__content {
-        height: 100%;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transform: scale(0);
-        transition: $transition;
-        
-    }
+	& .modal__content {
+		height: 100%;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transform: scale(0);
+		transition: $transition;
+	}
 
+	&_absence {
+		position: fixed;
+	}
 
-    &_absence {
-        position: fixed;
-    }
+	&.visible {
+		visibility: visible;
+		opacity: 1;
 
-    &.visible {
-        visibility: visible;
-        opacity: 1;
-
-        & > .modal__content {
-            transform: none;
-        }
-    }
+		& > .modal__content {
+			transform: none;
+		}
+	}
 }

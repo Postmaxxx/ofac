@@ -20,11 +20,11 @@ console.log('Port: ', process.env.PORT);
 
 const app = express()
 
-
 app.use(express.json({ extended: true, }));
 app.use(compression())
 
 
+//adjust CORS policy
 app.use(cors({ 
     origin: "*", 
     credentials: true,
@@ -46,7 +46,7 @@ if (mode === 'development') {
 	app.listen(PORT, () => console.log(`Server has been successfully started on port ${PORT}...`))
 } else {
 	https
-		.createServer(
+		.createServer( //use https certs
 			{
 				key: fse.readFileSync(`${backendFolder}/privkey.pem`),
 				cert: fse.readFileSync(`${backendFolder}/cert.pem`),

@@ -2,11 +2,15 @@
 	height: 100%;
 	display: flex;
 	flex-direction: column;
-	
-	
+
 	.content_main {
 		flex-grow: 1;
-		background-image: linear-gradient(0deg, rgba(217, 217, 217, 0.85), rgba(217, 217, 217, 0.85)), url('./assets/images/bg_light.jpg');
+		background-image: linear-gradient(
+				0deg,
+				rgba(217, 217, 217, 0.85),
+				rgba(217, 217, 217, 0.85)
+			),
+			url("./assets/images/bg_light.jpg");
 		background-size: cover, cover;
 		background-repeat: no-repeat no-repeat;
 		background-size: cover;
@@ -14,12 +18,15 @@
 	}
 }
 
-
-
 body.dark {
 	.content_main {
 		flex-grow: 1;
-		background-image: linear-gradient(0deg, rgba(56, 56, 56, 0.85), rgba(56, 56, 56, 0.85)), url('./assets/images/bg_dark.jpg');
+		background-image: linear-gradient(
+				0deg,
+				rgba(56, 56, 56, 0.85),
+				rgba(56, 56, 56, 0.85)
+			),
+			url("./assets/images/bg_dark.jpg");
 		background-size: cover, cover;
 		background-repeat: no-repeat no-repeat;
 		background-size: cover;

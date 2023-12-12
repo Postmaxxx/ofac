@@ -1,16 +1,24 @@
 @use "./variables" as *;
 
-@mixin  respond-to($width) {
-    @if $width == sm { 
-        @media (min-width: $sm) { @content } 
-    };
-    @if $width == md { 
-        @media (min-width: $md) { @content } 
-    };
-    @if $width == lg { 
-        @media (min-width: $lg) { @content } 
-    };
-    @if $width == xl { 
-        @media (min-width: $xl) { @content } 
-    }
+@mixin respond-to($width) {
+	@if $width == sm {
+		@media (min-width: $sm) {
+			@content;
+		}
+	}
+	@if $width == md {
+		@media (min-width: $md) {
+			@content;
+		}
+	}
+	@if $width == lg {
+		@media (min-width: $lg) {
+			@content;
+		}
+	}
+	@if $width == xl {
+		@media (min-width: $xl) {
+			@content;
+		}
+	}
 }

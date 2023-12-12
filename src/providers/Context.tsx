@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { IAppState, IPerson, TTheme } from '../interfaces';
+import { IAppState, IPerson, TTheme } from '../interfaces';;
 export const AppContext = createContext<IAppState | undefined>(undefined)
 
 
@@ -7,15 +7,11 @@ export const AppContext = createContext<IAppState | undefined>(undefined)
 export const Context = ({children}: {children: JSX.Element[] | JSX.Element}): JSX.Element => {
 
 	useEffect(() => {
-		const savedTheme = (localStorage.getItem('theme') || 'light') as TTheme
-		setTheme(savedTheme)
 		loadCountries()
 	}, [])
 
 
-
-
-	const loadCountries = async () => {
+	const loadCountries = async () => { //get countries list from backend for autofilling
 		try {
 			const url = `${process.env.backend}/api/countries`
             const response: Response = await fetch(url, {
@@ -32,10 +28,9 @@ export const Context = ({children}: {children: JSX.Element[] | JSX.Element}): JS
 	}
 
 	
-
 	const [countries, setCountries] = useState<string[]>([])
 	const [modal, setModal] = useState<any>()
-	const [theme, setTheme] = useState<TTheme>('light')
+	const [theme, setTheme] = useState<TTheme>((localStorage.getItem('theme')) as TTheme || 'light')
 	const [person, setPerson] = useState<IPerson>({
 		transferStatus: 'idle',
 		checkStatus: {dob: false, name: false, country: false},

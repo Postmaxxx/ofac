@@ -7,10 +7,19 @@ header {
 	padding-bottom: 15px;
 	color: var(--color_text_bright);
 	font-weight: 400;
-	font-size: 2rem;
 
 	& .header__content {
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
+		font-size: 1.5rem;
+
+		@include respond-to(sm) {
+			font-size: 1.7rem;
+		}
+
+		@include respond-to(md) {
+			font-size: 2rem;
+		}
 	}
 }

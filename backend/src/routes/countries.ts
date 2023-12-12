@@ -1,11 +1,9 @@
-import { ICoincidences } from "../interfaces"
-
 const { Router } = require("express")
 const router = Router()
 import { countries } from "../data/countries"
 
-
-router.get('/', //get list of coutries
+//return list of countries for autofill
+router.get('/',
     async (req, res) => {   
         try {
             return res.status(200).json({countries})

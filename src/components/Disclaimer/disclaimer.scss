@@ -1,24 +1,21 @@
 @use "../../assets/css/variables.scss" as *;
 @use "../../assets/css/mixins.scss" as *;
 
-
 .disclaimer {
 	margin-top: 50px;
-	
+
 	& .disclaimer__text {
 		font-size: 0.875rem;
 		line-height: 120%;
 		color: var(--color_text);
 		text-align: justify;
-		
+
 		@include respond-to(md) {
 			font-size: 1.1rem;
 		}
 	}
 
-
 	.disclaimer__privacy {
-
 		.button__privacy {
 			margin-top: 20px;
 			padding-right: 20px;
@@ -28,12 +25,12 @@
 			@include respond-to(md) {
 				font-size: 1rem;
 			}
-	
+
 			&::after {
 				margin-left: 10px;
 				position: relative;
 				display: block;
-				content: '';
+				content: "";
 				height: 8px;
 				width: 8px;
 				border-bottom: 1px solid var(--color_text);
@@ -42,15 +39,13 @@
 				transition: transform $transition;
 			}
 		}
-		
-		
+
 		& .privacy__text-wrapper {
 			display: grid;
 			grid-template-rows: 0fr;
 			transition: grid-template-rows $transition;
 			margin-top: 10px;
 			color: var(--color_text);
-
 
 			& > div {
 				overflow: hidden;
@@ -65,11 +60,9 @@
 					}
 				}
 			}
-
 		}
 
 		&.show {
-
 			& .button__privacy::after {
 				transform: rotate(-225deg);
 			}
@@ -78,8 +71,5 @@
 				grid-template-rows: 1fr;
 			}
 		}
-		
 	}
-
-
 }
