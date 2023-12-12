@@ -17,10 +17,12 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "server_fe_dev": "webpack serve --mode development",
     "server_fe_prod": "webpack serve --mode production",
     "build_fe": "webpack --mode production",
-    "deploy_fe": "gh-pages -d dist"
+    "deploy_fe": "npm run build_fe && gh-pages -d dist",
+    
+    "server_fe_dev": "webpack serve --mode development",
+    "server_be_dev": "npm run serverdev --prefix backend"
   },
   "eslintConfig": {
     "extends": [
