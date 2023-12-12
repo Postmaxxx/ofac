@@ -11,6 +11,4 @@
 /dist
 
 # misc
-.env.*
-.env.development
 .env.production
