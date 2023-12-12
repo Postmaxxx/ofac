@@ -92,7 +92,7 @@ export const Checker = (): JSX.Element => {
 					buttonText='Close'
 					text={result}
 					onClose={closeModal}
-					additionalData={<Result result={person.statuses} />}
+					additionalData={hit ? <Result result={person.statuses} /> : <></>}
 					/>
 			})
 			editPerson({transferStatus: 'idle'})

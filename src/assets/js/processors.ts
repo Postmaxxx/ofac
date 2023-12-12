@@ -18,7 +18,7 @@ export const inputChecker = ({ value, type }: IInputChecker): string | null => {
     }
     if (type === 'date') {
         const inputDate = new Date(value)
-        if (String(inputDate) === 'Invalid Date') return 'Please enter the date of birth in correct format'
+        if (String(inputDate) === 'Invalid Date') return 'Please enter the date of birth in mm/dd/yyyy format'
         if (inputDate < new Date("1900-01-01")) return 'Date is too early'
         if (inputDate > new Date()) return 'Please check the date'
     }
