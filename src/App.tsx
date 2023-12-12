@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { memo, useEffect, useRef } from 'react';
+import './assets/css/base.scss'
+import { Checker } from './components/Checker/Checker';
+import { Footer } from './components/Footer/Footer';
+import { Header } from './components/Header/Header';
+import Modal, { IModalFunctions } from "./components/Modal/Modal";
+import { useAppContext } from './hooks/useAppContext';
+import { Disclaimer } from './components/Disclaimer/Disclaimer';
+import './app.scss'
+const ModalMemo = memo(Modal)
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const { setModal }  = useAppContext()
+
+	const _modal = useRef<IModalFunctions>(null)
+
+
+	useEffect(() => {
+		if (_modal.current) {
+			setModal(_modal)	
+		}
+	}, [_modal.current])
+
+
+
+	return (
+		<div className="app">
+			<Header />
+			<div className="content_main">
+				<Disclaimer />
+				<Checker />
+			</div>
+			<Footer />
+			<ModalMemo ref={_modal}></ModalMemo>
+		</div>
+	);
 }
 
 export default App;

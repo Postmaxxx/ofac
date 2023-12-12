@@ -1,0 +1,32 @@
+$xl: 1240px;
+$lg: 992px;
+$md: 768px;
+$sm: 480px;
+
+$transition: .5s ease-in-out;
+
+
+body {
+	--color_bg: #D9D9D9;
+	--color_text: #000;
+	--color_text_bright: #FFF;
+	--color_main_bg: #416AA3;
+	--color_form_bg: #F4F4F4;
+	--input_bg: #FFF;
+	--input_bg_incorrect: rgb(238, 167, 167);
+	--input_text: #222;
+	--focus: #222;
+}
+
+
+body.dark {
+	--color_bg: #383838;
+	--color_text: #FFF;
+	--color_text_bright: #FFF;
+	--color_main_bg: #416AA3;
+	--color_form_bg: #000;
+	--input_bg: #000;
+	--input_bg_incorrect: rgb(238, 167, 167);
+	--input_text: #FFF;
+	--focus: #FFF;
+}

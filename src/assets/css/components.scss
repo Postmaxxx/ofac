@@ -1,0 +1,52 @@
+@use "./variables" as *;
+@use "./mixins" as *;
+
+.container {
+	width: 100%;
+	padding-left: 5%;
+	padding-right: 5%;
+	max-width: 768px;
+	margin-left: auto;
+	margin-right: auto;
+
+	@include respond-to(sm) {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+
+	@include respond-to(md) {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
+	@include respond-to(lg) {
+		padding-left: 25px;
+		padding-right: 25px;
+	}
+}
+
+.button {
+	padding: 10px 40px;
+	border: none;
+	cursor: pointer;
+	background-color: var(--color_main_bg);
+	border-radius: 8px;
+	font-size: 1.2rem;
+	color: var(--color_text_bright);
+	transition: 0.3s;
+
+	&:hover, &:focus {
+		transform: scale(1.02);
+		box-shadow: 0px 0px 10px var(--color_main_bg);
+	}
+}
+
+
+.button_transparent {
+	background-color: transparent;
+	border: none;
+	padding: 0;
+	margin: 0;
+	cursor: pointer;
+	color: var(--color_text);
+}

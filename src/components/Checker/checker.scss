@@ -1,0 +1,45 @@
+@use "../../assets/css/variables.scss" as *;
+@use "../../assets/css/mixins.scss" as *;
+
+.checker {
+	background-color: var(--color_form_bg);
+	margin-top: 30px;
+	border-radius: 5px;
+	border-radius: 10px;
+	overflow: hidden;
+	margin-bottom: 50px;
+	
+	@include respond-to(sm) {
+		max-width: 70%;
+		border-radius: 10px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+
+	.form__header {
+		display: block;
+		text-align: center;
+		justify-items: center;
+		background-color: var(--color_main_bg);
+		padding-top: 10px;
+		padding-bottom: 10px;
+
+		& > span {
+			font-size: 1.2rem;
+			color: var(--color_text_bright);
+		}
+	}
+
+
+	.form__content-wrapper {
+		padding: 20px;
+	}
+
+	.button_submit {
+		width: 100%;
+		margin-top: 30px;
+		margin-left: auto;
+	}
+}
+

@@ -1,0 +1,85 @@
+@use "../../assets/css/variables.scss" as *;
+@use "../../assets/css/mixins.scss" as *;
+
+
+.disclaimer {
+	margin-top: 50px;
+	
+	& .disclaimer__text {
+		font-size: 0.875rem;
+		line-height: 120%;
+		color: var(--color_text);
+		text-align: justify;
+		
+		@include respond-to(md) {
+			font-size: 1.1rem;
+		}
+	}
+
+
+	.disclaimer__privacy {
+
+		.button__privacy {
+			margin-top: 20px;
+			padding-right: 20px;
+			display: flex;
+			align-items: center;
+
+			@include respond-to(md) {
+				font-size: 1rem;
+			}
+	
+			&::after {
+				margin-left: 10px;
+				position: relative;
+				display: block;
+				content: '';
+				height: 8px;
+				width: 8px;
+				border-bottom: 1px solid var(--color_text);
+				border-left: 1px solid var(--color_text);
+				transform: rotate(-45deg);
+				transition: transform $transition;
+			}
+		}
+		
+		
+		& .privacy__text-wrapper {
+			display: grid;
+			grid-template-rows: 0fr;
+			transition: grid-template-rows $transition;
+			margin-top: 10px;
+			color: var(--color_text);
+
+
+			& > div {
+				overflow: hidden;
+
+				& .privacy__text {
+					font-size: 0.875rem;
+					line-height: 120%;
+					text-align: justify;
+
+					@include respond-to(md) {
+						font-size: 1rem;
+					}
+				}
+			}
+
+		}
+
+		&.show {
+
+			& .button__privacy::after {
+				transform: rotate(-225deg);
+			}
+
+			& .privacy__text-wrapper {
+				grid-template-rows: 1fr;
+			}
+		}
+		
+	}
+
+
+}

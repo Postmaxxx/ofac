@@ -1,0 +1,15 @@
+@use "../../assets/css/variables.scss" as *;
+
+footer {
+	background-color: var(--color_main_bg);
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-top: auto;
+
+	.footer-wrapper {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		color: var(--color_text_bright);
+	}
+}

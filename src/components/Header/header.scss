@@ -1,0 +1,11 @@
+@use "../../assets/css/variables.scss" as *;
+@use "../../assets/css/mixins.scss" as *;
+
+header {
+	background-color: var(--color_main_bg);
+	padding-top: 15px;
+	padding-bottom: 15px;
+	color: var(--color_text_bright);
+	font-weight: 400;
+	font-size: 2rem;
+}
