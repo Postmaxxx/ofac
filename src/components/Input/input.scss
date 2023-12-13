@@ -14,7 +14,6 @@
 		display: block;
 		transition: color $transition;
 		font-weight: 500;
-		color: var(--text);
 		margin-bottom: 3px;
 		color: var(--color_text);
 
@@ -68,6 +67,7 @@
 	}
 
 	& [data-content="errorText"] {
+		color: var(--color_text);
 		display: none;
 		&::before {
 			content: attr(data-prefix-text);
