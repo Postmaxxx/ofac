@@ -33,3 +33,4 @@ For scaling backend for this app some actions can be taken.
 npm run server_be_dev
 npm run server_fe_dev
 ```
+!Do not forget to add your apiKey in /backend/.env.development file
