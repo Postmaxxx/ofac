@@ -18,15 +18,22 @@ Quite simple yet highly upgradable, the app checks individuals against the OFAC 
 The backend, hosted on an Amazon EC2 instance, provides a response to the frontend with information on OFAC hits/clears for requested person, along with a country list for autofilling. To scale the backend, consider the following actions:
 
 ## Improvements:
-- Add an Auto Scaling Group for automatic creation of new instances.
+- Add an Auto Scaling Group for automatic creation of new instances by load or assignment.
 - Deploy instances in different regions.
-- Use Route53 and an Auto Load Balancer to determine the fastest region.
-- Use AMI for EC2 instance creation.
-- Due to the small size of the OFAC list (less than 100Mb), consider using an In-Memory database (Redis, ElastiCache, DynamoDB+DAX) in different regions alongwith using primary SQL Database for storing data.
-- Implement AWS Lambda or EC2 for daily database updates from relevant sources.
-- Use CDN for geo-caching frontend app
+- Use Route53 and an Auto Load Balancer to work with the fastest region.
+- Use AMI for EC2 instance creation and backup.
+- Due to the small size of the OFAC list (less than 100Mb), consider using an In-Memory databases (Redis, ElastiCache, DynamoDB+DAX) in different regions alongwith using primary SQL Database for storing data.
+- Implement AWS Lambda or EC2 for daily databases updates from relevant sources.
+- Use CDN for geo-caching frontend app.
+- Storing sensitive data (i.e. names, IDs and so on) will require isolated segment of network with strong security policy and firewall.
 
 These improvements will enhance the app's scalability, reliability, and efficiency.
+
+**Link to app: https://postmaxxx.github.io/ofac**
+
+
+
+
 
 ### Start App
 ```bash
